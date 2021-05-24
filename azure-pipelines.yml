@@ -67,6 +67,7 @@ stages:
     displayName: Deploy
     environment: $(environmentName)
     pool:
+      name: Ubuntu
       vmImage: $(vmImageName)
     strategy:
       runOnce:
