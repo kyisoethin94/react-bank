@@ -51,6 +51,7 @@ stages:
     environment: 
      name: DemoBankApp
      resourceType: VirtualMachine
+     tags: linux1
     strategy:
       runOnce:
         deploy:
