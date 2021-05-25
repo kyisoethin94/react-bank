@@ -7,9 +7,14 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "server": "cd old-api && npm start",
+    "client": "cd web && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  },
   "dependencies": {
     "faker": "^5.1.0",
     "joi": "^17.3.0",
