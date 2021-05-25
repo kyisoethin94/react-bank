@@ -46,7 +46,7 @@ stages:
   dependsOn: Build
   condition: succeeded()
   jobs:
-  - deployment: Deploy
+  - deployment: MyDeploy
     displayName: Deploy
     environment: 
      name: DemoBankApp
