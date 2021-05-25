@@ -63,3 +63,4 @@ stages:
               targetFolder: ~/workingspace
           - script: 
               unzip ~/workingspace/$(Build.BuildId).zip
+              npm run dev
