@@ -57,7 +57,7 @@ stages:
     environment: $(environmentName)
     pool:
       name: Ubuntu
-      vmImage: kst-VirtualBoxDeploy
+      vmImage: UbuntuBox
     strategy:
       runOnce:
         deploy:
