@@ -66,6 +66,6 @@ stages:
             inputs:
               sourceFolder: $(Pipeline.Workspace)/drop
               contents: $(Build.BuildId).zip
-              targetFolder: .
+              targetFolder: ~/workingspace
           - script: 
-              unzip $(Build.BuildId).zip
+              unzip ~/workingspace/$(Build.BuildId).zip
