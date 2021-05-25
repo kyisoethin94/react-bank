@@ -52,8 +52,6 @@ stages:
   dependsOn: Build
   condition: succeeded()
   jobs:
-  - job: Paste
-    displayName: Paste
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
