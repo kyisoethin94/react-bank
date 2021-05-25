@@ -8,17 +8,8 @@ trigger:
 
 variables:
 
-  # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'f4079aac-aa3b-48d9-91c0-b28634cf289c'
-
-  # Web app name
-  webAppName: 'DemoBankApp'
-
   # Environment name
   environmentName: 'DemoBankApp'
-
-  # Agent VM image name
-  vmImageName: 'kst-VirtualBox'
 
 stages:
 - stage: Build
@@ -28,7 +19,7 @@ stages:
     displayName: Build
     pool:
       name: Ubuntu
-      vmImage: $(vmImageName)
+      vmImage: kst-VirtualBox
 
     steps:
     - task: NodeTool@0
@@ -39,13 +30,11 @@ stages:
     - script: |
         cd old-api
         npm install
-        npm run build --if-present
-        npm run test --if-present
+        npm run build
         cd ../web
         npm install
-        npm run build --if-present
+        npm run build
       displayName: 'npm install, build and test'
-
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -63,22 +52,22 @@ stages:
   dependsOn: Build
   condition: succeeded()
   jobs:
+  - job: Paste
+    displayName: Paste
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
     pool:
       name: Ubuntu
-      vmImage: $(vmImageName)
+      vmImage: kst-VirtualBoxDeploy
     strategy:
       runOnce:
         deploy:
           steps:
-          - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: DemoBankApp'
+          - task: CopyFiles@2
             inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webAppName)
-              runtimeStack: 'NODE|10.10'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run dev'
+              sourceFolder: $(Pipeline.Workspace)/drop
+              contents: $(Build.BuildId).zip
+              targetFolder: .
+          - script: 
+              unzip $(Build.BuildId).zip
