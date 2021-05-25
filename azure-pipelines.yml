@@ -54,6 +54,7 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
+    environment: $(environmentName)
     pool:
       name: Ubuntu
       vmImage: kst-VirtualBoxDeploy
