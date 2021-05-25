@@ -5,12 +5,6 @@
 
 trigger:
 - master
-
-variables:
-
-  # Environment name
-  environmentName: 'DemoBankApp'
-
 stages:
 - stage: Build
   displayName: Build stage
@@ -54,7 +48,9 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
-    environment: $(environmentName)
+    environment: 
+     name: DemoBankApp
+     resourceType: VirtualMachine
     strategy:
       runOnce:
         deploy:
