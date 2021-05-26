@@ -14,6 +14,8 @@ stages:
     pool:
       name: Ubuntu
       vmImage: kst-VirtualBox
+    workspace:
+      clean: outputs
 
     steps:
     - task: NodeTool@0
@@ -22,6 +24,7 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
+        npm install
         cd old-api
         npm install
         npm run build
@@ -52,6 +55,8 @@ stages:
      name: DemoBankApp
      resourceType: VirtualMachine
      tags: linux1
+    workspace:
+      clean: outputs
     strategy:
       runOnce:
         deploy:
