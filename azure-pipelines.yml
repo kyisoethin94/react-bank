@@ -61,4 +61,7 @@ stages:
               sourceFolder: $(Pipeline.Workspace)/drop
               contents: $(Build.BuildId).zip
               targetFolder: ~/workingspace
-          - bash: unzip ~/workingspace/$(Build.BuildId).zip
+          - bash: |
+              cd ~/workingspace/server
+              unzip -o ~/workingspace/$(Build.BuildId).zip
+              npm run dev
