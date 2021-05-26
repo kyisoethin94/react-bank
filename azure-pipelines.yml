@@ -15,7 +15,7 @@ stages:
       name: Ubuntu
       vmImage: kst-VirtualBox
     workspace:
-      clean: outputs
+      clean: all
 
     steps:
     - task: NodeTool@0
@@ -24,14 +24,10 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        npm install
-        npm run build
         cd old-api
         npm install
-        npm run build
         cd ../web
         npm install
-        npm run build
       displayName: 'npm install, build and test'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -57,7 +53,7 @@ stages:
      resourceType: VirtualMachine
      tags: linux1
     workspace:
-      clean: outputs
+      clean: all
     strategy:
       runOnce:
         deploy:
