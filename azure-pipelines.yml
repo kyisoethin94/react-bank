@@ -64,7 +64,8 @@ stages:
               contents: $(Build.BuildId).zip
               targetFolder: ~/workingspace
           - bash: |
+              pm2 stop 0
               cd ~/workingspace/server
               rm -r --force ./*
               unzip -o ~/workingspace/$(Build.BuildId).zip
-              npm run dev
+              pm2 restart 0
