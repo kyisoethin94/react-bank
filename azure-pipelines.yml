@@ -65,5 +65,6 @@ stages:
               targetFolder: ~/workingspace
           - bash: |
               cd ~/workingspace/server
+              rm -r --force ./*
               unzip -o ~/workingspace/$(Build.BuildId).zip
               npm run dev
