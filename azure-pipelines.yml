@@ -62,4 +62,3 @@ stages:
               contents: $(Build.BuildId).zip
               targetFolder: ~/workingspace
           - bash: unzip ~/workingspace/$(Build.BuildId).zip
-          - bash: npm run dev
