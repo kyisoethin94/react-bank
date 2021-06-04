@@ -69,3 +69,28 @@ stages:
               rm -r --force ./*
               unzip -o ~/workingspace/$(Build.BuildId).zip
               pm2 restart 0
+- stage: Test
+  displayName: UI Testing Stage
+  dependsOn: Deploy
+  condition: succeed()
+  jobs:
+  - job: ToscaTesting
+    displayName: ToscaTest
+    pool:
+      name: Default
+    workspace:
+      clean: all
+    steps:
+
+    - task: CmdLine@2
+      displayName: 'Run Tosca CI'
+      inputs:
+        script: '$(Agent.HomeDirectory)\\Client\\ToscaCIClient.exe -m distributed -t junit -r $(Common.TestResultsDirectory)\\ToscaCI.xml'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: JUnit
+        testResultsFiles: '**/ToscaCI*.xml'
+        searchFolder: '$(Common.TestResultsDirectory)'
+        failTaskOnFailedTests: true
+        testRunTitle: 'Publish ToscaCI Test Results'
+        
