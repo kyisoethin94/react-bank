@@ -72,7 +72,7 @@ stages:
 - stage: Test
   displayName: UI Testing Stage
   dependsOn: Deploy
-  condition: succeed()
+  condition: succeeded()
   jobs:
   - job: ToscaTesting
     displayName: ToscaTest
