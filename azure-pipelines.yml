@@ -85,7 +85,7 @@ stages:
     - task: CmdLine@2
       displayName: 'Run Tosca CI'
       inputs:
-        script: '$(Agent.HomeDirectory)\\Client\\ToscaCIClient.exe -m distributed -t junit -r $(Common.TestResultsDirectory)\\ToscaCI.xml'
+        script: '$(Agent.HomeDirectory)\\Client\\ToscaCIClient.exe -m distributed -c C:\\Users\\KST\\Documents\\agent\\Client\\CITestExecutionConfiguration.xml -t junit -r $(Common.TestResultsDirectory)\\ToscaCI.xml'
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: JUnit
