@@ -62,7 +62,7 @@ stages:
             inputs:
               buildType: 'current'
               downloadType: 'single'
-              artifactName: '$(Build.ArtifactsStagingDirectory)/$(Build.BuildId).zip'
+              artifactName: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               downloadPath: '$(System.ArtifactsDirectory)'
           - task: AzureRmWebAppDeployment@4
             inputs:
