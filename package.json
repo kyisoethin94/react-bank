@@ -9,9 +9,9 @@
     "build": "strapi build",
     "strapi": "strapi",
     "server": "cd old-api && npm start",
-     "server_build" : "cd old-api && npm build"
+     "server_build" : "cd old-api && npm build",
     "client": "cd web && npm start",
-     "client_build" : "cd web && npm build"
+     "client_build" : "cd web && npm build",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
