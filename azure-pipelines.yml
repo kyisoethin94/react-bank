@@ -58,13 +58,19 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: DownloadBuildArtifacts@1
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: '$(Build.ArtifactsStagingDirectory)/drop/$(Build.BuildId).zip'
+              downloadPath: '$(System.ArtifactsDirectory)'
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
               azureSubscription: 'Pay-As-You-Go(0f5ce1a3-5d3c-463e-b9a8-d4743768aa5c)'
               appType: 'webAppLinux'
               WebAppName: 'ReactBankApp'
-              packageForLinux: '$(Build.ArtifactsStagingDirectory)/drop/$(Build.BuildId).zip'
+              packageForLinux: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|14-lts'
               StartupCommand: 'npm run dev'
 - stage: Test
