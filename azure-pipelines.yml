@@ -48,9 +48,10 @@ stages:
   jobs:
   - deployment: MyDeploy
     displayName: Deploy
-    pool:
-      name: Ubuntu
-      vmImage: kst-VirtualBox
+    environment: 
+     name: DemoBankApp
+     resourceType: VirtualMachine
+     tags: linux1
     workspace:
       clean: all
     strategy:
