@@ -48,6 +48,12 @@ stages:
   jobs:
   - deployment: MyDeploy
     displayName: Deploy
+    environment: 
+     name: DemoBankApp
+     resourceType: VirtualMachine
+     tags: linux1
+    workspace:
+      clean: all
     strategy:
       runOnce:
         deploy:
