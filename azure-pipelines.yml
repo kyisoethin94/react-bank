@@ -42,8 +42,6 @@ stages:
       artifact: drop
 - stage: Test
   displayName: UI Testing Stage
-  dependsOn: Deploy
-  condition: succeeded()
   jobs:
   - job: ToscaTesting
     displayName: ToscaTest
