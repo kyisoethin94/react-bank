@@ -6,12 +6,11 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
+    "build": "npm run server_build",
     "strapi": "strapi",
     "server": "cd old-api && npm start",
      "server_build" : "cd old-api && npm build",
     "client": "cd web && npm start",
-     "client_build" : "cd web && npm build",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
