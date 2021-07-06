@@ -40,39 +40,6 @@ stages:
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
-
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: MyDeploy
-    displayName: Deploy
-    environment: 
-     name: DemoBankApp
-     resourceType: VirtualMachine
-     tags: linux1
-    workspace:
-      clean: all
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: DownloadBuildArtifacts@1
-            inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: 'drop'
-              downloadPath: '$(System.ArtifactsDirectory)'
-          - task: AzureRmWebAppDeployment@4
-            inputs:
-              ConnectionType: 'AzureRM'
-              azureSubscription: 'Pay-As-You-Go(0f5ce1a3-5d3c-463e-b9a8-d4743768aa5c)'
-              appType: 'webAppLinux'
-              WebAppName: 'ReactBankApp'
-              packageForLinux: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
-              RuntimeStack: 'NODE|14-lts'
-              StartupCommand: 'npm run dev'
 - stage: Test
   displayName: UI Testing Stage
   dependsOn: Deploy
