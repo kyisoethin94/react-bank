@@ -48,27 +48,19 @@ stages:
   jobs:
   - deployment: MyDeploy
     displayName: Deploy
-    environment: 
-     name: DemoBankApp
-     resourceType: VirtualMachine
-     tags: linux1
-    workspace:
-      clean: all
     strategy:
       runOnce:
         deploy:
           steps:
-          - task: CopyFiles@2
+          - task: AzureRmWebAppDeployment@4
             inputs:
-              sourceFolder: $(Pipeline.Workspace)/drop
-              contents: $(Build.BuildId).zip
-              targetFolder: ~/workingspace
-          - bash: |
-              pm2 stop 0
-              cd ~/workingspace/server
-              rm -r --force ./*
-              unzip -o ~/workingspace/$(Build.BuildId).zip
-              pm2 restart 0
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'Pay-As-You-Go(0f5ce1a3-5d3c-463e-b9a8-d4743768aa5c)'
+              appType: 'webAppLinux'
+              WebAppName: 'ReactBankApp'
+              packageForLinux: '$(System.DefaultWorkingDirectory)/drop/$(Build.BuildId).zip'
+              RuntimeStack: 'NODE|14-lts'
+              StartupCommand: 'npm run dev'
 - stage: Test
   displayName: UI Testing Stage
   dependsOn: Deploy
