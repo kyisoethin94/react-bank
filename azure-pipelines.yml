@@ -23,7 +23,8 @@ stages:
         versionSpec: '10.x'
       displayName: 'Install Node.js'
 
-    - script: |
+    - script: 
+        export PATH=$PATH:/home/site/wwwroot/node_modules/.bin
         npm install
         cd old-api
         npm install
