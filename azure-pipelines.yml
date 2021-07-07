@@ -24,8 +24,6 @@ stages:
       displayName: 'Install Node.js'
 
     - script: 
-        export PATH=$PATH:/home/site/wwwroot/node_modules/.bin
-        npm install
         cd old-api
         npm install
         cd ../web
@@ -68,7 +66,7 @@ stages:
               WebAppName: 'ReactBankApp'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|14-lts'
-              StartupCommand: 'npm install && npm start'
+              StartupCommand: 'export PATH=$PATH:/home/site/wwwroot/node_modules/.bin && npm install && npm start'
 - stage: Test
   displayName: UI Testing Stage
   dependsOn: Deploy
