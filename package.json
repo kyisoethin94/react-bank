@@ -13,9 +13,6 @@
     "client": "cd web && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "devDependencies": {
-    "concurrently": "^6.2.0"
-  },
   "dependencies": {
      "concurrently": "^6.2.0",
     "faker": "^5.1.0",
