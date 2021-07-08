@@ -8,9 +8,9 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run server_build",
     "strapi": "strapi",
-    "server": "cd old-api && npm install && npm start",
+    "server": "cd old-api && npm start",
      "server_build" : "cd old-api && npm build",
-    "client": "cd web && npm install && npm start",
+    "client": "cd web && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
