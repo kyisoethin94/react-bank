@@ -24,8 +24,8 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        echo "$pwd" && cd old-api && npm install
-        echo "$pwd0" && cd ../web && npm install && npm build
+        cd old-api && npm install
+        cd ../web && npm install && npm build
       displayName: 'npm install, build and test'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -63,7 +63,6 @@ stages:
               WebAppName: 'ReactBankApp'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|14-lts'
-              StartupCommand: 'cd web && npm install && cd ../old-api && npm install && cd .. && npm start'
 #  displayName: UI Testing Stage
 #  dependsOn: Deploy
 #  condition: succeeded()
