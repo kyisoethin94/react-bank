@@ -23,9 +23,9 @@ stages:
         versionSpec: '10.x'
       displayName: 'Install Node.js'
 
-    - script: 
-        cd old-api && npm install
-        cd web && npm install && npm build
+    - script: |
+        echo "$pwd" && cd old-api && npm install
+        echo "$pwd0" && cd web && npm install && npm build
       displayName: 'npm install, build and test'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
