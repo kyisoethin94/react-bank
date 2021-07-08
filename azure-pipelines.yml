@@ -24,11 +24,8 @@ stages:
       displayName: 'Install Node.js'
 
     - script: 
-        cd old-api
-        npm install
-        cd ../web
-        npm install
-        npm build
+        cd old-api && npm install
+        cd web && npm install && npm build
       displayName: 'npm install, build and test'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
