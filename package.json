@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "preinstall" : "cd web && npm install && npm build && cd ../old-api && npm install"
+    "preinstall" : "cd web && npm install && npm build && cd ../old-api && npm install",
     "strapi": "strapi",
     "server": "cd old-api && npm start",
      "server_build" : "cd old-api && npm build",
