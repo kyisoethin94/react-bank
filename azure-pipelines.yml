@@ -63,6 +63,7 @@ stages:
               WebAppName: 'ReactBankApp'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|14-lts'
+              StartupCommand: 'cd web && npm install && cd ../old-api && npm install && cd .. && npm start'
 #  displayName: UI Testing Stage
 #  dependsOn: Deploy
 #  condition: succeeded()
